@@ -24,9 +24,12 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
+          context: .
           platforms: linux/arm64
           build-args: BRANCH=${{ steps.set_nvim_version.outputs.nvim_version }}
           outputs: type=local,dest=.
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
       - name: Rename
         run: set -x; mv nvim.appimage nvim.${{ steps.set_nvim_version.outputs.nvim_version }}.arm64.appimage
       - name: Release
