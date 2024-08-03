@@ -11,13 +11,13 @@ Build nvim.appimage for aarch64(arm64) architecture
 build master branch
 
 ----
-./build.sh
+docker buildx build --platform linux/arm64 -o . .
 ----
 
 build with specified version
 
 ----
-./build.sh v0.7.2
+docker buildx build --platform linux/arm64 --build-arg BRANCH=v0.10.1 -o . .
 ----
 
 == License
